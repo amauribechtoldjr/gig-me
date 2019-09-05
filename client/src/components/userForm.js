@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import * as compose from "lodash.flowright";
 
@@ -22,29 +22,35 @@ const UserForm = ({ addUserQuery }) => {
       setAdmin(false);
     };
     return (
-      <form id="user-form">
-        <div className="inputs">
-          <span>Name: </span>
-          <input
-            type="text"
-            value={name}
-            className="field"
-            onChange={event => setName(event.target.value)}
-          />
-          <span>Admin: </span>
-          <input
-            type="checkbox"
-            checked={admin}
-            className="field"
-            onChange={event => setAdmin(event.target.checked)}
-          />
+      <form>
+        <div className="div-inputs">
+          <div className="div-inputs-name">
+            <span>Name: </span>
+            <input
+              type="text"
+              value={name}
+              className="field"
+              onChange={event => setName(event.target.value)}
+            />
+          </div>
+          <div className="div-inputs-admin">
+            <span>Admin: </span>
+            <input
+              type="checkbox"
+              checked={admin}
+              className="field"
+              onChange={event => setAdmin(event.target.checked)}
+            />
+          </div>
         </div>
-        <button onClick={event => onSubmit(event)}>Salvar</button>
+        <div className="div-bt-save-record">
+          <button onClick={event => onSubmit(event)}>Save user</button>
+        </div>
       </form>
     );
   };
 
-  return <Fragment>{displayForm()}</Fragment>;
+  return <div id="user-form">{displayForm()}</div>;
 };
 
 export default compose(graphql(addUserQuery, { name: "addUserQuery" }))(

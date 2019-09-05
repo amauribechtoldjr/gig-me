@@ -9,12 +9,17 @@ import { getUsersQuery, removeUser } from "../queries/queries";
 
 const UserList = ({ getUsersQuery: getUsersData, removeUser }) => {
   const deleteUser = user => {
-    removeUser({
-      variables: {
-        id: user.id
-      },
-      refetchQueries: [{ query: getUsersQuery }]
-    });
+    let isConfirmed = window.confirm(
+      "Tem certeza que deseja excluir o usuário?"
+    );
+    if (isConfirmed) {
+      removeUser({
+        variables: {
+          id: user.id
+        },
+        refetchQueries: [{ query: getUsersQuery }]
+      });
+    }
   };
   const displayUsers = () => {
     const { error, loading, users } = getUsersData;
@@ -34,15 +39,10 @@ const UserList = ({ getUsersQuery: getUsersData, removeUser }) => {
     }
     return users.map((item, index) => {
       return (
-        <li key={index}>
-          <p>
-            ID: {item.id}
-            <br></br>
-            Name: {item.name}
-            <br></br>
-            {item.admin && <span>ADMINISTRADOR!</span>}
-            <button onClick={() => deleteUser(item)}>Excluir</button>
-          </p>
+        <li key={index} onClick={() => deleteUser(item)}>
+          <div>ID: {item.id}</div>
+          <div>Name: {item.name}</div>
+          <div>{item.admin && <span>ADMINISTRADOR!</span>}</div>
         </li>
       );
     });

@@ -13,7 +13,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div id="main">
-        <h1>GraphQL web APP</h1>
+        <div id="div-title">
+          <span>GraphQL web APP</span>
+        </div>
         <UserList />
         <UserForm />
       </div>
