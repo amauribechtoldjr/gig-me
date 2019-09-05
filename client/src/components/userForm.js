@@ -23,25 +23,23 @@ const UserForm = ({ addUserQuery }) => {
     };
     return (
       <form id="user-form">
-        <p>
+        <div className="inputs">
           <span>Name: </span>
           <input
             type="text"
             value={name}
+            className="field"
             onChange={event => setName(event.target.value)}
           />
-        </p>
-        <p>
           <span>Admin: </span>
           <input
             type="checkbox"
             checked={admin}
+            className="field"
             onChange={event => setAdmin(event.target.checked)}
           />
-        </p>
-        <p>
-          <button onClick={event => onSubmit(event)}>Salvar</button>
-        </p>
+        </div>
+        <button onClick={event => onSubmit(event)}>Salvar</button>
       </form>
     );
   };

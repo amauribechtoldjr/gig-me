@@ -40,9 +40,7 @@ const UserList = ({ getUsersQuery: getUsersData, removeUser }) => {
             <br></br>
             Name: {item.name}
             <br></br>
-            {item.admin && (
-              <span style={{ color: "#113344" }}>ADMINISTRADOR!</span>
-            )}
+            {item.admin && <span>ADMINISTRADOR!</span>}
             <button onClick={() => deleteUser(item)}>Excluir</button>
           </p>
         </li>
@@ -50,7 +48,7 @@ const UserList = ({ getUsersQuery: getUsersData, removeUser }) => {
     });
   };
   return (
-    <div>
+    <div id="users-list">
       <ul>{displayUsers()}</ul>
     </div>
   );
