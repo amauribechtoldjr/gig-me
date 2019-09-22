@@ -3,6 +3,7 @@ import { gql } from "apollo-boost";
 const getUsersQuery = gql`
   {
     users {
+      hash_fb
       id
       name
       admin
